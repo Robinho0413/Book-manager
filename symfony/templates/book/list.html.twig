@@ -1,0 +1,61 @@
+{# filepath: templates/book/list.html.twig #}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Liste des livres</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        .cards {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .card {
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            padding: 16px;
+            margin: 16px;
+            width: 300px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-decoration: none;
+            color: inherit;
+            background-color: #fff;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+        .card img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 8px 8px 0 0;
+        }
+        .card h2 {
+            margin: 16px 0 8px;
+            font-size: 1.5em;
+        }
+        .card p {
+            margin: 8px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Liste des livres</h1>
+    <div class="cards">
+        {% for book in books %}
+            <a href="{{ path('book_detail', {id: book.id}) }}" class="card">
+                <img src="/images/{{ book.image }}" alt="Image de {{ book.title }}">
+                <h2>{{ book.title }}</h2>
+                <p><strong>Auteur:</strong> {{ book.author }}</p>
+            </a>
+        {% endfor %}
+    </div>
+</body>
+</html>
